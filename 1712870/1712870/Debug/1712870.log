@@ -1,0 +1,16 @@
+﻿Build started 15/04/2018 2:31:58 CH.
+     1>Project "C:\Users\computer\Desktop\1712870\1712870\1712870\1712870\1712870.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         main.cpp
+     1>c:\users\computer\desktop\1712870\1712870\1712870\1712870\main.cpp(24): warning C4996: '_wfopen': This function or variable may be unsafe. Consider using _wfopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(590) : see declaration of '_wfopen'
+     1>c:\users\computer\desktop\1712870\1712870\1712870\1712870\main.cpp(31): warning C4566: character represented by universal-character-name '\u1EC4' cannot be represented in the current code page (1258)
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\computer\Desktop\1712870\1712870\1712870\Debug\1712870.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\computer\Desktop\1712870\1712870\1712870\Debug\1712870.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\computer\Desktop\1712870\1712870\1712870\Debug\1712870.lib" /MACHINE:X86 Debug\main.obj
+         1712870.vcxproj -> C:\Users\computer\Desktop\1712870\1712870\1712870\Debug\1712870.exe
+     1>Done Building Project "C:\Users\computer\Desktop\1712870\1712870\1712870\1712870\1712870.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.73
