@@ -16,8 +16,55 @@ struct SINHVIEN
 	wchar_t SoThich1[101];
 	wchar_t SoThich2[101];
 };
+typedef struct SINHVIEN SV;
+wchar_t** TaoMang(FILE*p, int &n) 
+{
+	n = 0;
+	wchar_t **a = (wchar_t**)malloc(1 * sizeof(wchar_t*));
+	while (!feof(p))
+	{
+		a[n] = (wchar_t*)malloc(1600 * sizeof(wchar_t));
+		fgetws(a[n], 1600, p);
+		if (!feof(p))
+		{
+			n++;
+			a = (wchar_t**)realloc(a, (n + 1)*sizeof(wchar_t*));
+		}
+		else
+			break;
+	}
+	return a;
+}
+void Chuyen(wchar_t *a, wchar_t b[])
+{
+	for (int i = 0; i < wcslen(a); i++)
+	{
+		b[i] = *(a + i);
+	}
+}
+void TachThongTin(wchar_t *a, SV* &sv)
+{
+	wchar_t *s = wcsdup(a);
+	wchar_t	**b = (wchar_t**)malloc(9 * sizeof(wchar_t));
+	wchar_t *p;
+	p = wcstok(a, L",");
+	while (p != NULL)
+	{
+		b[index] = p;
+		index++;
+		p = wcstok(NULL, L",");
+}
 
 
+
+
+
+  
+void DocFile(FILE* p, int &n)
+{
+	SV *sv;
+
+}
 
 void main()
 {
@@ -28,7 +75,7 @@ void main()
 	fwprintf(fo, L"	<head>\n");
 	fwprintf(fo, L"		<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />\n");
 	fwprintf(fo, L"		<link rel=\"stylesheet\" type=\"text/css\" href=\"personal.css\" />\n");
-	fwprintf(fo, L"		<title>HCMUS - %ls</title>\n", sv->MSSV);
+	fwprintf(fo, L"		<title>HCMUS - Nguyễn Văn A</title>");
 	fwprintf(fo, L"	</head>\n");
 	fwprintf(fo, L"	<body>\n");
 
