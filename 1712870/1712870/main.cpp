@@ -11,48 +11,101 @@ struct SINHVIEN
 	wchar_t Khoa[31];
 	short KhoaHoc;
 	wchar_t NgaySinh[11];
+	wchar_t Email[30];
 	wchar_t HinhCaNhan[21];
 	wchar_t Mota[1001];
 	wchar_t SoThich1[101];
 	wchar_t SoThich2[101];
 };
 typedef struct SINHVIEN SV;
+void DoiKiTu(wchar_t a[], int i, int j)
+{
+	for (i; i < j; i++)
+	{
+		if (a[i] == L',') a[i] = L'$';
+	}
+}
+void XuLiChuoi(wchar_t a[])//Kiem tra chuoi co dau " hay khong va xu li
+{
+	int length = wcslen(a), i = 0;
+	while (i<length)
+	{
+		if (a[i] == L'"')
+
+		{
+			for (int j = i + 1; j < length; j++)
+			{
+				if (a[j] == L'"')
+				{
+					DoiKiTu(a, i, j);
+					i = i + j + 1;
+					break;
+				}
+
+			}
+		}
+		else
+			i++;
+	}
+}
 wchar_t** TaoMang(FILE*p, int &n) 
 {
 	n = 0;
 	wchar_t **a = (wchar_t**)malloc(1 * sizeof(wchar_t*));
 	while (!feof(p))
 	{
-		a[n] = (wchar_t*)malloc(1600 * sizeof(wchar_t));
-		fgetws(a[n], 1600, p);
+		a[n] = (wchar_t*)malloc(1400 * sizeof(wchar_t));
+		fgetws(a[n], 1400, p);
+		XuLiChuoi(a[n]);
 		if (!feof(p))
 		{
 			n++;
-			a = (wchar_t**)realloc(a, (n + 1)*sizeof(wchar_t*));
+			a = (wchar_t**)realloc(a, (n)*sizeof(wchar_t*));
 		}
 		else
 			break;
 	}
 	return a;
 }
-void Chuyen(wchar_t *a, wchar_t b[])
+void TraLaiKiTu(wchar_t a[])
 {
 	for (int i = 0; i < wcslen(a); i++)
 	{
-		b[i] = *(a + i);
+		if (a[i] == '$') a[i] = ',';
 	}
 }
-void TachThongTin(wchar_t *a, SV* &sv)
+
+void ChuyenChuoi(wchar_t *a, wchar_t b[])
+{
+	for (int i = 0; i < wcslen(a); i++)
+	{
+		b[i] = a[i];
+	}
+}
+void TachThongTin(wchar_t *a)
 {
 	wchar_t *s = wcsdup(a);
-	wchar_t	**b = (wchar_t**)malloc(9 * sizeof(wchar_t));
+	wchar_t	**b = (wchar_t**)malloc(10 * sizeof(wchar_t));
 	wchar_t *p;
-	p = wcstok(a, L",");
+	int i = 0;
+	p = wcstok(a, L",\"");
 	while (p != NULL)
 	{
-		b[index] = p;
-		index++;
-		p = wcstok(NULL, L",");
+		b[i] = p;
+		i++;
+		p = wcstok(NULL, L",\"");
+	}
+	SV* sv = (SV*)malloc(sizeof(SV));
+	ChuyenChuoi(b[0], sv->MSSV);
+	ChuyenChuoi(b[1], sv->HoTen);
+	ChuyenChuoi(b[2], sv->Khoa);
+	sv->KhoaHoc = _wtoi(b[3]);
+	ChuyenChuoi(b[4], sv->NgaySinh);
+	ChuyenChuoi(b[5], sv->Email);
+	ChuyenChuoi(b[6], sv->HinhCaNhan);
+	ChuyenChuoi(b[7], sv->Mota);
+	ChuyenChuoi(b[8], sv->SoThich1);
+	ChuyenChuoi(b[9], sv->SoThich2);
 }
 
 
