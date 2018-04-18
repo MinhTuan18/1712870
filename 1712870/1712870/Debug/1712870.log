@@ -1,19 +1,26 @@
-﻿Build started 18/04/2018 5:00:49 CH.
+﻿Build started 18/04/2018 11:42:43 CH.
      1>Project "C:\Users\computer\Desktop\1712870\1712870\1712870\1712870\1712870.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
          main.cpp
-     1>c:\users\computer\desktop\1712870\1712870\1712870\1712870\main.cpp(72): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\computer\desktop\1712870\1712870\1712870\1712870\main.cpp(79): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\computer\desktop\1712870\1712870\1712870\1712870\main.cpp(117): warning C4996: 'swscanf': This function or variable may be unsafe. Consider using swscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>c:\users\computer\desktop\1712870\1712870\1712870\1712870\main.cpp(73): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\computer\desktop\1712870\1712870\1712870\1712870\main.cpp(112): warning C4996: 'wcscpy': This function or variable may be unsafe. Consider using wcscpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(294) : see declaration of 'wcscpy'
+     1>c:\users\computer\desktop\1712870\1712870\1712870\1712870\main.cpp(113): warning C4996: 'wcscpy': This function or variable may be unsafe. Consider using wcscpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(294) : see declaration of 'wcscpy'
+     1>c:\users\computer\desktop\1712870\1712870\1712870\1712870\main.cpp(114): warning C4996: 'swscanf': This function or variable may be unsafe. Consider using swscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(571) : see declaration of 'swscanf'
-     1>c:\users\computer\desktop\1712870\1712870\1712870\1712870\main.cpp(130): warning C4996: '_wfopen': This function or variable may be unsafe. Consider using _wfopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>c:\users\computer\desktop\1712870\1712870\1712870\1712870\main.cpp(125): warning C4996: 'wcscpy': This function or variable may be unsafe. Consider using wcscpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(294) : see declaration of 'wcscpy'
+     1>c:\users\computer\desktop\1712870\1712870\1712870\1712870\main.cpp(126): warning C4996: 'wcscat': This function or variable may be unsafe. Consider using wcscat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(284) : see declaration of 'wcscat'
+     1>c:\users\computer\desktop\1712870\1712870\1712870\1712870\main.cpp(127): warning C4996: '_wfopen': This function or variable may be unsafe. Consider using _wfopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(590) : see declaration of '_wfopen'
-     1>c:\users\computer\desktop\1712870\1712870\1712870\1712870\main.cpp(153): warning C4996: 'wcsupr': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _wcsupr. See online help for details.
+     1>c:\users\computer\desktop\1712870\1712870\1712870\1712870\main.cpp(151): warning C4996: 'wcsupr': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _wcsupr. See online help for details.
                  c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(419) : see declaration of 'wcsupr'
-     1>c:\users\computer\desktop\1712870\1712870\1712870\1712870\main.cpp(154): warning C4996: 'wcsupr': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _wcsupr. See online help for details.
+     1>c:\users\computer\desktop\1712870\1712870\1712870\1712870\main.cpp(152): warning C4996: 'wcsupr': The POSIX name for this item is deprecated. Instead, use the ISO C++ conformant name: _wcsupr. See online help for details.
                  c:\program files (x86)\microsoft visual studio 12.0\vc\include\string.h(419) : see declaration of 'wcsupr'
-     1>c:\users\computer\desktop\1712870\1712870\1712870\1712870\main.cpp(225): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+     1>c:\users\computer\desktop\1712870\1712870\1712870\1712870\main.cpp(228): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(211) : see declaration of 'fopen'
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\computer\Desktop\1712870\1712870\1712870\Debug\1712870.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\computer\Desktop\1712870\1712870\1712870\Debug\1712870.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\computer\Desktop\1712870\1712870\1712870\Debug\1712870.lib" /MACHINE:X86 Debug\main.obj
@@ -22,4 +29,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.57
+Time Elapsed 00:00:00.49
