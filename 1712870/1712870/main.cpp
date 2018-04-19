@@ -42,7 +42,6 @@ void XuLiChuoi(wchar_t a[])//Kiem tra chuoi co dau " hay khong va xu li
 					i = i + j + 1;
 					break;
 				}
-
 			}
 		}
 		else
@@ -70,13 +69,23 @@ wchar_t** DocVaoChuoi(FILE*p, int &n)
 }
 void TraLaiKiTu(wchar_t a[])
 {
-	for (int i = 0; i < wcslen(a); i++)
+	int n = wcslen(a);
+	for (int i = 0; i < n; i++)
 	{
-		if (a[i] == '$') a[i] = ',';
+		if (a[i] == L'$') a[i] = L',';
+	}
+	if (a[0] == L'\"')
+	{
+		a[n - 1] = L'\0';
 	}
 }
-
-
+void ChuyenChuoi(wchar_t *a, wchar_t b[])
+{
+	for (int i = 0; i < wcslen(a); i++)
+	{
+		b[i] = a[i];
+	}
+}
 SV* TachThongTin(wchar_t *a)
 {
 	SV *sv = (SV*)malloc(sizeof(SV));
@@ -88,8 +97,6 @@ SV* TachThongTin(wchar_t *a)
 	TraLaiKiTu(sv->SoThich2);
 	return sv;
 }
-
-
 void InHTML(SV *sv)
 {
 	wchar_t filename[20];
@@ -97,18 +104,18 @@ void InHTML(SV *sv)
 	wcscat(filename, L".html");
 	FILE *out = _wfopen(filename, L"wt");
 	_setmode(_fileno(out), _O_U8TEXT);
-	fwprintf(out, L"<!DOCTYPE html PUBLIC \" -//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n");
+	fwprintf(out, L"<!DOCTYPE html PUBLIC\" -//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n");
 	fwprintf(out, L"<html xmlns=\"http://www.w3.org/1999/xhtml\">\n");
 	fwprintf(out, L"	<head>\n");
-	fwprintf(out, L"		<meta http-equiv=\"Content - Type\" content=\"text / html; charset = utf - 8\" />\n");
-	fwprintf(out, L"		<link rel=\"stylesheet\" type=\"text / css\" href=\"personal.css\" />\n");
+	fwprintf(out, L"		<meta http-equiv=\"Content-Type\" content=\"text / html; charset=utf-8\" />\n");
+	fwprintf(out, L"		<link rel=\"stylesheet\" type=\"text/css\" href=\"personal.css\" />\n");
 	fwprintf(out, L"		<title>HCMUS - %ls</title>\n", sv->HoTen);
 	fwprintf(out, L"	</head>\n");
 	fwprintf(out, L"	<body>\n");
 	fwprintf(out, L"		<div class=\"Layout_container\">\n");
 	fwprintf(out, L"			<!-- Begin Layout Banner Region -->\n");
 	fwprintf(out, L"			<div class=\"Layout_Banner\" >\n");
-	fwprintf(out, L"				<div><img id=\"logo\" src=\"Images/logo.jpg\" height=\"105\" /></div>\n");
+	fwprintf(out, L"				<div><img id=\"logo\" src=\"Images/logo.jpg\"height=\"105\" /></div>\n");
 	fwprintf(out, L"				<div class=\"Header_Title\">TRƯỜNG ĐẠI HỌC KHOA HỌC TỰ NHIÊN </div>\n");
 	fwprintf(out, L"			</div>\n");
 	fwprintf(out, L"			<!-- End Layout Banner Region -->\n");
@@ -119,8 +126,8 @@ void InHTML(SV *sv)
 	fwprintf(out, L"					<!-- Begin Thông tin cá nhân của thầy cô ----------------------------------------------------------------------------------------- -->\n");
 	fwprintf(out, L"					<div class=\"Personal_Location\">\n");
 	fwprintf(out, L"						<img src=\"Images/LogoFooter.jpg\" width=\"27\" height=\"33\" />\n");
-	fwprintf(out, L"						<div class=\"Personal_FullName\">%ls - %ls</div>\n", wcsupr(sv->HoTen), sv->MSSV);
-	fwprintf(out, L"						<div class=\"Personal_Department\">KHOA %ls</div>\n", wcsupr(sv->Khoa));
+	fwprintf(out, L"						<div class=\"Personal_FullName\">%ls - %ls</div>\n", sv->HoTen, sv->MSSV);
+	fwprintf(out, L"						<div class=\"Personal_Department\">KHOA %ls</div>\n", sv->Khoa);
 	fwprintf(out, L"						<br />\n");
 	fwprintf(out, L"						<div class=\"Personal_Phone\">\n");
 	fwprintf(out, L"							Email: %ls", sv->Email);
@@ -195,22 +202,28 @@ void XuLi(wchar_t *a)
 }
 void main()
 {
-	int n;
-	FILE* inp = fopen("E:\\data.csv", "rt");
+	int n = 0;
+	FILE* inp = _wfopen(L"E:\\Data.csv", L"r");
+	_setmode(_fileno(inp), _O_U8TEXT);
 	if (inp == NULL)
 	{
 		printf("Khong mo duoc tap tin!\n");
 		return;
 	}
 	wchar_t **data = DocVaoChuoi(inp, n);
-	printf("%d", n);
-	for (int i = 0; i < n; i++)
+
+	for (int i = 0; i <= n; i++)
 	{
 		XuLi(data[i]);
 	}
-	for (int i=0; i <= n; i++)
-	{
-		free(data[i]);
-	}
+	printf("%d", n);
+
+
+
+
+
+	for (int j = 0; j < n; j++)
+		free(data[j]);
 	free(data);
+
 }
