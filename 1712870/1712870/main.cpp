@@ -23,15 +23,16 @@ void DoiKiTu(wchar_t a[], int i, int j)
 {
 	for (i; i < j; i++)
 	{
-		if (a[i] == L',') a[i] = L'$';
+		if (a[i] == L',') a[i] = L'*';
 	}
 }
 void XuLiChuoi(wchar_t a[])//Kiem tra chuoi co dau " hay khong va xu li
 {
 	int length = wcslen(a), i = 0;
+	
 	while (i<length)
 	{
-		if (a[i] == L'"')
+		if (a[i] == L'\"')
 
 		{
 			for (int j = i + 1; j < length; j++)
@@ -39,7 +40,7 @@ void XuLiChuoi(wchar_t a[])//Kiem tra chuoi co dau " hay khong va xu li
 				if (a[j] == L'"')
 				{
 					DoiKiTu(a, i, j);
-					i = i + j + 1;
+					i = j + 1; 
 					break;
 				}
 			}
@@ -67,16 +68,22 @@ wchar_t** DocVaoChuoi(FILE*p, int &n)
 	n--;
 	return a;
 }
-void TraLaiKiTu(wchar_t a[])
+void TraLaiKiTu(wchar_t *a)
 {
 	int n = wcslen(a);
 	for (int i = 0; i < n; i++)
 	{
-		if (a[i] == L'$') a[i] = L',';
+		if (a[i] == L'*') a[i] = L',';
 	}
 	if (a[0] == L'\"')
 	{
-		a[n - 1] = L'\0';
+		for (int i = 0; i < n; i++)
+		{
+			a[i] = a[i + 1];
+		}
+		a[n - 2] = L'\0';
+		if (a[n - 3] == L'\"')
+			a[n - 3] = L'\0';
 	}
 }
 void ChuyenChuoi(wchar_t *a, wchar_t b[])
@@ -91,7 +98,7 @@ SV* TachThongTin(wchar_t *a)
 	SV *sv = (SV*)malloc(sizeof(SV));
 	wcscpy(sv->SoThich1, L"");
 	wcscpy(sv->SoThich2, L"");
-	swscanf(a, L"%[^,],%[^,],%[^,],%d,%[^,],%[^,],%[^,],%[^,],%[^,]\n", &sv->MSSV, &sv->HoTen, &sv->Khoa, &sv->KhoaHoc, &sv->NgaySinh, &sv->Email, &sv->HinhCaNhan, &sv->Mota, &sv->SoThich1, &sv->SoThich2);
+	swscanf(a, L"%[^,],%[^,],%[^,],%d,%[^,],%[^,],%[^,],%[^,],%[^,],%[^\n]\n", &sv->MSSV, &sv->HoTen, &sv->Khoa, &sv->KhoaHoc, &sv->NgaySinh, &sv->Email, &sv->HinhCaNhan, &sv->Mota, &sv->SoThich1, &sv->SoThich2);
 	TraLaiKiTu(sv->Mota);
 	TraLaiKiTu(sv->SoThich1);
 	TraLaiKiTu(sv->SoThich2);
@@ -193,6 +200,7 @@ void InHTML(SV *sv)
 	fwprintf(out, L"		</div>\n");
 	fwprintf(out, L"	</body>\n");
 	fwprintf(out, L"</html>\n");
+	fclose(out);
 }
 void XuLi(wchar_t *a)
 {
@@ -203,7 +211,7 @@ void XuLi(wchar_t *a)
 void main()
 {
 	int n = 0;
-	FILE* inp = _wfopen(L"E:\\Data.csv", L"r");
+	FILE* inp = _wfopen(L"Data.csv", L"r");
 	_setmode(_fileno(inp), _O_U8TEXT);
 	if (inp == NULL)
 	{
@@ -216,14 +224,9 @@ void main()
 	{
 		XuLi(data[i]);
 	}
-	printf("%d", n);
-
-
-
-
-
+	printf("Thanh cong\n");
 	for (int j = 0; j < n; j++)
 		free(data[j]);
 	free(data);
-
+	fclose(inp);
 }
