@@ -1,26 +1,4 @@
-﻿
-
-/*#include <stdio.h>
-#include <conio.h>
-#include <string.h>
-#include <io.h>
-#include <wchar.h>
-#include <stdlib.h>
-#include <fcntl.h>
-struct SINHVIEN
-{
-	wchar_t MSSV[11];
-	wchar_t HoTen[31];
-	wchar_t Khoa[31];
-	int KhoaHoc;
-	wchar_t NgaySinh[11];
-	wchar_t Email[30];
-	wchar_t HinhCaNhan[21];
-	wchar_t Mota[1001];
-	wchar_t SoThich1[101];
-	wchar_t SoThich2[101];
-};
-typedef struct SINHVIEN SV;
+﻿#include "khaibao.h"
 void DoiKiTu(wchar_t a[], int i, int j)
 {
 	for (i; i < j; i++)
@@ -28,10 +6,11 @@ void DoiKiTu(wchar_t a[], int i, int j)
 		if (a[i] == L',') a[i] = L'*';
 	}
 }
+
 void XuLiChuoi(wchar_t a[])//Kiem tra chuoi co dau " hay khong va xu li
 {
 	int length = wcslen(a), i = 0;
-	
+
 	while (i<length)
 	{
 		if (a[i] == L'\"')
@@ -42,7 +21,7 @@ void XuLiChuoi(wchar_t a[])//Kiem tra chuoi co dau " hay khong va xu li
 				if (a[j] == L'"')
 				{
 					DoiKiTu(a, i, j);
-					i = j + 1; 
+					i = j + 1;
 					break;
 				}
 			}
@@ -51,6 +30,7 @@ void XuLiChuoi(wchar_t a[])//Kiem tra chuoi co dau " hay khong va xu li
 			i++;
 	}
 }
+
 wchar_t** DocVaoChuoi(FILE*p, int &n)
 {
 	n = 0;
@@ -70,6 +50,7 @@ wchar_t** DocVaoChuoi(FILE*p, int &n)
 	n--;
 	return a;
 }
+
 void TraLaiKiTu(wchar_t *a)
 {
 	int n = wcslen(a);
@@ -88,6 +69,7 @@ void TraLaiKiTu(wchar_t *a)
 			a[n - 3] = L'\0';
 	}
 }
+
 void ChuyenChuoi(wchar_t *a, wchar_t b[])
 {
 	for (int i = 0; i < wcslen(a); i++)
@@ -95,6 +77,7 @@ void ChuyenChuoi(wchar_t *a, wchar_t b[])
 		b[i] = a[i];
 	}
 }
+
 SV* TachThongTin(wchar_t *a)
 {
 	SV *sv = (SV*)malloc(sizeof(SV));
@@ -112,6 +95,7 @@ SV* TachThongTin(wchar_t *a)
 	TraLaiKiTu(sv->SoThich2);
 	return sv;
 }
+
 void InHTML(SV *sv)
 {
 	wchar_t filename[20];
@@ -210,34 +194,10 @@ void InHTML(SV *sv)
 	fwprintf(out, L"</html>\n");
 	fclose(out);
 }
+
 void XuLi(wchar_t *a)
 {
 	SV *sv = (SV*)malloc(sizeof(SV));
 	sv = TachThongTin(a);
 	InHTML(sv);
-}
-
-*/
-#include "khaibao.h"
-void main()
-{
-	int n = 0;
-	FILE* inp = _wfopen(L"Data.csv", L"r");
-	_setmode(_fileno(inp), _O_U8TEXT);
-	if (inp == NULL)
-	{
-		printf("Khong mo duoc tap tin!\n");
-		return;
-	}
-	wchar_t **data = DocVaoChuoi(inp, n);
-
-	for (int i = 0; i <= n; i++)
-	{
-		XuLi(data[i]);
-	}
-	printf("Thanh cong\n");
-	for (int j = 0; j <= n; j++)
-		free(data[j]);
-	free(data);
-	fclose(inp);
 }
