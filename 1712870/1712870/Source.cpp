@@ -7,6 +7,21 @@ void DoiKiTu(wchar_t a[], int i, int j)
 	}
 }
 
+wchar_t * upper(wchar_t* line){
+	wchar_t* temp = (wchar_t *)malloc((wcslen(line) + 1)*sizeof(wchar_t));
+	for (int i = 0; i < wcslen(line); i++){
+		if (line[i] >= 256 && line[i] % 2 != 0)
+			temp[i] = line[i] - 1;
+		else if (line[i] == 32 || (line[i] >= 256 && line[i] % 2 == 0) || (line[i] >= 65 && line[i] <= 90))
+			temp[i] = line[i];
+		else
+			temp[i] = line[i] - 32;
+
+	}
+	temp[wcslen(line)] = L'\0';
+	return temp;
+}
+
 void XuLiChuoi(wchar_t a[])//Kiem tra chuoi co dau " hay khong va xu li
 {
 	int length = wcslen(a), i = 0;
@@ -101,6 +116,7 @@ void InHTML(SV *sv)
 	wchar_t filename[20];
 	wcscpy(filename, sv->MSSV);
 	wcscat(filename, L".html");
+	wchar_t *khoa = upper(sv->Khoa);
 	FILE *out = _wfopen(filename, L"wt");
 	_setmode(_fileno(out), _O_U8TEXT);
 	fwprintf(out, L"<!DOCTYPE html PUBLIC\" -//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n");
@@ -126,7 +142,7 @@ void InHTML(SV *sv)
 	fwprintf(out, L"					<div class=\"Personal_Location\">\n");
 	fwprintf(out, L"						<img src=\"Images/LogoFooter.jpg\" width=\"27\" height=\"33\" />\n");
 	fwprintf(out, L"						<div class=\"Personal_FullName\">%ls - %ls</div>\n", sv->HoTen, sv->MSSV);
-	fwprintf(out, L"						<div class=\"Personal_Department\">KHOA %ls</div>\n", sv->Khoa);
+	fwprintf(out, L"						<div class=\"Personal_Department\">KHOA %ls</div>\n", khoa);
 	fwprintf(out, L"						<br />\n");
 	fwprintf(out, L"						<div class=\"Personal_Phone\">\n");
 	fwprintf(out, L"							Email: %ls", sv->Email);

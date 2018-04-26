@@ -20,6 +20,7 @@ struct SINHVIEN
 }; 
 typedef struct SINHVIEN SV;
 void DoiKiTu(wchar_t a[], int i, int j);
+wchar_t * upper(wchar_t* line);
 void XuLiChuoi(wchar_t a[]);
 wchar_t** DocVaoChuoi(FILE*p, int &n);
 void TraLaiKiTu(wchar_t *a);
